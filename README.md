@@ -28,5 +28,3 @@ Funktsionaalsuse alla arvestatud ka huvitavaid Front End'i lahendusi.
 * [React](https://reactjs.org/)
 * [MongoDB](https://www.mongodb.com/)
 * [NodeJS](https://nodejs.org/en/)
-
-
