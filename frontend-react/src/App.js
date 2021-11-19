@@ -1,24 +1,25 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Register from "./components/register.js";
+import Login from "./components/login.js";
+import Header from "./components/header.js";
+import { Layout } from 'antd';
 
 function App() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Layout>
+                    <Header>
+                        <Route path="/" element={<Header/>}/>
+                    </Header>
+                    <Routes>
+                        <Route exact path="/register" element={<Register/>}/>
+                        <Route exact path="/login" element={<Login/>}/>
+                    </Routes>
+                </Layout>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
