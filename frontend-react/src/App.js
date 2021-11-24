@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./components/register.js";
 import Login from "./components/login.js";
+import UploadFile from "./components/upload.js";
 import Header from "./components/header.js";
 import { Layout } from 'antd';
 
@@ -15,6 +16,7 @@ function App() {
                     <Routes>
                         <Route exact path="/register" element={<Register/>}/>
                         <Route exact path="/login" element={<Login/>}/>
+                        <Route exact path="/upload" element={<UploadFile/>}/>
                     </Routes>
                 </Layout>
             </BrowserRouter>
