@@ -21,7 +21,7 @@ function Register() {
         } else if (!user.password !== user.repeatPassword) {
             setError('The passwords dont match, please try again');
         } else {
-            const response = await fetch('http://localhost:8081/api/auth/signup', {
+            const response = await fetch('http://localhost:3000/api/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
