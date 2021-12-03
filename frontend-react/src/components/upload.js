@@ -15,7 +15,7 @@ function UploadFile() {
             console.log(files[i]);     
         }
         
-        axios.post("http://localhost:3000/upload", uploadData )
+        axios.post("http://localhost:3000/api/upload/upload", uploadData )
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
     }
