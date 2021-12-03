@@ -3,23 +3,18 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const dotenv = require("dotenv");
-const authRoutes = require('../routes/auth');
-
 dotenv.config();
+const authRoutes = require('../routes/auth');
+const uploadRoutes = require('../routes/upload');
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
-
-mongoose.connect(process.env.MDB_CONNECT,
-{
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-},
-(err) => {
-  if (err) return console.error(err);
-  console.log("DB connected");
-}
+mongoose.connect(process.env.MDB_CONNECT,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err) => {
+    if (err) return console.error(err);
+    console.log("DB connected");
+  }
 );
 
 app.listen(PORT, () => {
@@ -29,3 +24,4 @@ app.listen(PORT, () => {
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/upload', uploadRoutes);
