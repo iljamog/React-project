@@ -11,10 +11,11 @@ function UploadFile() {
         const uploadData = new FormData(); 
         uploadData.append("albumName", albumName);
         for (let i = 0; i < files.length; i++) {
-            uploadData.append("file", files[i])         
+            uploadData.append("file", files[i]);  
+            console.log(files[i]);     
         }
         
-        axios.post("http://localhost:3000/api/upload/upload", uploadData )
+        axios.post("http://localhost:3000/upload", uploadData )
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
     }
@@ -22,10 +23,12 @@ function UploadFile() {
     return (
         <div className="App">
             <div className="upload">
+            
                 <label htmlFor="file">File</label>
                 <input 
                 type="file" 
-                id="file" 
+                id="file"
+                name="file" 
                 multiple
                 onChange={ event=> {
                     const filesToUpload = event.target.files;
@@ -40,6 +43,7 @@ function UploadFile() {
                     const {value} = event.target;
                     setAlbumName(value);
                 }}/>
+
             </div>
             <button onClick={uploadHandler}>Upload</button>
         </div>

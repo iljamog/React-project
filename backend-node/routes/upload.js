@@ -4,6 +4,6 @@ const router = express.Router();
 const uploadMiddleware = require('../middleware/upload'); // STORING LOCALLY
 
 
-router.post("/upload", uploadMiddleware.send/* ,uploadController.uploadFiles*/);
+router.post("/upload", uploadMiddleware.send /* ,uploadController.uploadFiles*/);
 
 module.exports = router;
