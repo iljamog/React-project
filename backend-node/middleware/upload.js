@@ -23,11 +23,12 @@ const upload = multer({
 })
 
 module.exports.send = (req, res, next) => {
-  return upload.single('file')(req, res, () => {
+  return upload.array('file')(req, res, () => {
     // Remember, the middleware will call it's next function
     // so we can inject our controller manually as the next()
 
-    if (!req.file) return res.json({ error: " Something went wrong when uploading " })
+    if (!req.files){ return res.json({ error: " Something went wrong when uploading " })} 
+    //else { console.log (req.files)} 
     next()
   })
 }
