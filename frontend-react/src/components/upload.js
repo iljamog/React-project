@@ -32,7 +32,7 @@ function UploadFile() {
                     }} />
 
                 <label class="uploadlabel" htmlFor="albumName">Album name</label>
-                <input class="uploadinput" type="text" id="albumName"
+                <input class="uploadinput" placeholder="Enter album name" type="text" id="albumName"
                     onChange={event => {
                         const { value } = event.target;
                         setAlbumName(value);
