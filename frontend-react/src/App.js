@@ -3,6 +3,7 @@ import Register from "./components/register.js";
 import Login from "./components/login.js";
 import UploadFile from "./components/upload.js";
 import Header from "./components/header.js";
+import HomePage from "./components/homePage.js";
 import { Layout } from 'antd';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
                         <Route path="/" element={<Header/>}/>
                     </Header>
                     <Routes>
+                        <Route exact path="/home" element={<HomePage/>}/>
                         <Route exact path="/register" element={<Register/>}/>
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/upload" element={<UploadFile/>}/>

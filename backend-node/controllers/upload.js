@@ -2,7 +2,6 @@ const Image = require("../models/Image")
 
 exports.uploadFiles = async (req, res) => {
     const { albumName } = req.body
-    //const { fileNames } = req.files
     let fileArray = []  
      
   
@@ -17,7 +16,7 @@ exports.uploadFiles = async (req, res) => {
 
       Image.insertMany(fileArray).then((param) => {
         console.log("files added to db")
-        res.status(200).json({ message: "Tervitus" })
+        res.status(200).json({ message: "Pildid jõudsid mongosse" })
       });
       
       
