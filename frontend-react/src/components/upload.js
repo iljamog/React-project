@@ -13,10 +13,10 @@ function UploadFile() {
         uploadData.append("albumName", albumName);
         for (let i = 0; i < files.length; i++) {
             uploadData.append("file", files[i]);
-            console.log(files[i]);
+            //console.log(files[i]);
         }
         axios.post("http://localhost:3000/api/upload/upload", uploadData)
-            .then(res => console.log(res.data))
+            .then(window.location.reload())
             .catch(err => console.log(err));
     }
 
