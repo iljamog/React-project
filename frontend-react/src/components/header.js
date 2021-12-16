@@ -8,7 +8,7 @@ function Header() {
     return (<>
         <div className="logo"/>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']}>
-            <Menu.Item key="home"><Link to="/">Home</Link></Menu.Item>
+            <Menu.Item key="home"><Link to="home">Home</Link></Menu.Item>
             <Menu.Item key="2"><Link to="register">Register</Link></Menu.Item>
             <Menu.Item key="3"><Link to="login">Login</Link></Menu.Item>
             <Menu.Item key="4"><Link to="upload">Image upload</Link></Menu.Item>

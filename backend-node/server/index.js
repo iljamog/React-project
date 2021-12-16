@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const authRoutes = require('../routes/auth');
 const uploadRoutes = require('../routes/upload');
+const imagesRoutes = require('../routes/images');
 
 mongoose.connect(process.env.MDB_CONNECT,{
     useNewUrlParser: true,
@@ -25,3 +26,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/home', imagesRoutes);
+app.use('/uploads', express.static('uploads'));
+
+
