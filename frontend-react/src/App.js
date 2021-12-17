@@ -4,6 +4,7 @@ import Login from "./components/login.js";
 import UploadFile from "./components/upload.js";
 import Header from "./components/header.js";
 import HomePage from "./components/homePage.js";
+import AboutAuthorPage from "./components/about.js";
 import { Layout } from 'antd';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                         <Route exact path="/register" element={<Register/>}/>
                         <Route exact path="/login" element={<Login/>}/>
                         <Route exact path="/upload" element={<UploadFile/>}/>
+                        <Route exact path="/about" element={<AboutAuthorPage/>}/>
                     </Routes>
                 </Layout>
             </BrowserRouter>
