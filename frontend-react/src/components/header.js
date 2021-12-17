@@ -10,8 +10,7 @@ function Header() {
     const [header, setHeader] =useState();
     const [user, setUser] = useState();
     
-    function logout(){
-        
+    function logout(){        
         localStorage.clear();
         setUser();
     }
@@ -25,6 +24,7 @@ function Header() {
                     <Menu.Item key="1"><Link to="home">Home</Link></Menu.Item>
                     <Menu.Item key="4"><Link to="upload">Image upload</Link></Menu.Item>
                     <Menu.Item key="5" onClick={logout} style={{ marginLeft: 'auto' }}><Link to="home">Logout</Link></Menu.Item>
+                    <Menu.Item key="6" ><Link to="about">About author</Link></Menu.Item>
                 </Menu>
             </>)
         }else {
@@ -34,6 +34,7 @@ function Header() {
                     <Menu.Item key="1"><Link to="home">Home</Link></Menu.Item>
                     <Menu.Item key="2" style={{ marginLeft: 'auto' }}><Link to="register">Register</Link></Menu.Item>
                     <Menu.Item key="3"style={{ marginLeft: '0%' }}><Link to="login">Login</Link></Menu.Item>
+                    <Menu.Item key="6" ><Link to="about">About author</Link></Menu.Item>
                 </Menu>
             </>)
         }
