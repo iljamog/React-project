@@ -7,7 +7,6 @@ function UploadFile() {
     const [albumName, setAlbumName] = useState();
     const [files, setFiles] = useState([]);
 
-
     function uploadHandler() {
         const uploadData = new FormData();
         uploadData.append("albumName", albumName);

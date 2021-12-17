@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import './homePage.css';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 function HomePage() {
@@ -27,31 +28,53 @@ function HomePage() {
         return prev;
     }, {});
 
+    const [model, setModel] =useState(false)
+    const [tempImageSource, setTempImageSource] = useState('')
+
+    const selectImage = (pathString) => {
+        setTempImageSource(pathString)
+        setModel(true)
+    }
+
     const picsToUpload = Object.entries(picsByAlbum).map(([key, value]) => {
         //KEY IS ALBUMNAME, VALUE IS AN OBJECT CONTAINING EVERY PIC DATA
         let arrayOfHtmlElements = [];
+        let cssClassNameForImageContainer;
+
         Array.from(value).forEach(element => {
             let pathString = "http://localhost:3001/uploads/" + element.fileName;
             let imageID = element._id;
-            return (arrayOfHtmlElements.push(<img src={pathString} key={imageID} class="pa-3" style={{ justifyContent: 'center', height: '500px', width: '500px' }} height="auto" />))
+            return (arrayOfHtmlElements.push(<div className='imageDiv' onClick={() => selectImage(pathString)}> <img alt="failed to load" src={pathString} key={imageID} style={{width: '100%'}}/> </div>))
         });
+
+        if (value.length === 1) {
+            cssClassNameForImageContainer = 'imageContainerFor1image';
+        } else if (value.length === 2) {
+            cssClassNameForImageContainer = 'imageContainerFor2image';
+         }else {
+            cssClassNameForImageContainer = 'imageContainer';
+         }
+
         return (
-            <div>
+            <div className='albumContainer'>
                 <div>
-                    <p className="homePageText">{key}</p>
+                    <p className='albumName'>-  {key}</p>
                 </div>
-                <div className="album" >
-                    <div >{arrayOfHtmlElements}</div>
+                <div className={cssClassNameForImageContainer}>
+                    {arrayOfHtmlElements}
                 </div>
             </div>
         )
     })
 
     return (
+        
         <div className="gallery">
-            <div className='gallery1stinnerdiv'>
-                <div className='gallery2ndinnerdiv'>{picsToUpload}</div>                
+            <div className={model? 'model open':'model'}>
+                <img alt="failed to load" src={tempImageSource}/>
+                <CloseIcon onClick={() => setModel(false)}/>
             </div>
+            {picsToUpload}
         </div>
     )
 }
