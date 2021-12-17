@@ -1,5 +1,6 @@
-import './register.css'
-import {useState} from "react"
+import './register.css';
+import {useState} from "react";
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [error, setError] = useState('');
@@ -8,6 +9,7 @@ function Register() {
     const [repeatPassword, setRepeatPassword] = useState("");
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
+    const navigate = useNavigate()
 
 
     function handleEmailChange(e){
@@ -55,6 +57,7 @@ function Register() {
             if (response.ok) {
                 setError('')
                 console.log("Success! User registered!")
+                navigate('/home');
             } else {
                 let errors = ''
                 if (returnData.error) {
@@ -66,7 +69,8 @@ function Register() {
                 }
                 setError(errors)
             }
-        }if(error){
+        }
+        if(error){
             console.log(error);
         }
     }
