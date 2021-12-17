@@ -32,8 +32,8 @@ function Header() {
                 <div className="logo"/>
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
                     <Menu.Item key="1"><Link to="home">Home</Link></Menu.Item>
-                    <Menu.Item key="2" style={{ marginLeft: '83%' }}><Link to="register">Register</Link></Menu.Item>
-                    <Menu.Item key="3"style={{ marginLeft: '1%' }}><Link to="login">Login</Link></Menu.Item>
+                    <Menu.Item key="2" style={{ marginLeft: 'auto' }}><Link to="register">Register</Link></Menu.Item>
+                    <Menu.Item key="3"style={{ marginLeft: '0%' }}><Link to="login">Login</Link></Menu.Item>
                 </Menu>
             </>)
         }
