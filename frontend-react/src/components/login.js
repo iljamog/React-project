@@ -34,7 +34,8 @@ function Login() {
     if (returnData.token) {
       console.log("Successfully logged in")
       localStorage.setItem('user', returnData)
-      navigate('/home'); 
+      navigate('/home');
+      window.location.reload(); 
     } else {
       let errors = ''
       if (returnData.error) {
