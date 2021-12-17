@@ -8,7 +8,7 @@ exports.getAll = async (req, res) => {
         res.send(images);
 
       } catch (error) {
-        console.log("teretere")
+        console.log("Error while getting list of photos.")
         res.status(500).send({ get_error: 'Error while getting list of photos.' });
 
       }

@@ -33,6 +33,7 @@ function Login() {
 
     if (returnData.token) {
       console.log("Successfully logged in")
+      localStorage.setItem('user', returnData)
       navigate('/home'); 
     } else {
       let errors = ''
@@ -49,13 +50,13 @@ function Login() {
   }
 
   return (
-    <div class="form-body">
-      <div class="mainform">
-        <div class="loginform">
-          <label class="loginlabel">Login</label>
-          <input class="input" label="E-mail" placeholder="E-mail" onChange={handleEmailChange} type="email" required />
-          <input class="input" label="Password" placeholder="Password" onChange={handlePasswordChange} type="password" required />
-          <button class="button" type="primary" onClick={LogIn}>Submit</button>
+    <div className="form-body">
+      <div className="mainform">
+        <div className="loginform">
+          <label className="loginlabel">Login</label>
+          <input className="input" label="E-mail" placeholder="E-mail" onChange={handleEmailChange} type="email" required />
+          <input className="input" label="Password" placeholder="Password" onChange={handlePasswordChange} type="password" required />
+          <button className="button" type="primary" onClick={LogIn}>Submit</button>
         </div>
       </div>
     </div>
