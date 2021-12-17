@@ -22,6 +22,8 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
+app.base = "/home"
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);

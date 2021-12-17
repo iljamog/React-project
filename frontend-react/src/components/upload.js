@@ -12,7 +12,6 @@ function UploadFile() {
         uploadData.append("albumName", albumName);
         for (let i = 0; i < files.length; i++) {
             uploadData.append("file", files[i]);
-            //console.log(files[i]);
         }
         axios.post("http://localhost:3000/api/upload/upload", uploadData)
             .then(window.location.reload())
@@ -20,23 +19,23 @@ function UploadFile() {
     }
 
     return (
-    <div class="form-body">
-        <div class="mainuploadform">
-            <div class="uploadform">
-                <label class="upperuploadlabel" htmlFor="file">Choose file(s) for upload</label>
-                <input class="uploadinput" type="file" id="file" name="file" multiple
+    <div className="form-body">
+        <div className="mainuploadform">
+            <div className="uploadform">
+                <label className="upperuploadlabel" htmlFor="file">Choose file(s) for upload</label>
+                <input className="uploadinput" type="file" id="file" name="file" multiple
                     onChange={event => {
                         const filesToUpload = event.target.files;
                         setFiles(filesToUpload);
                     }} />
 
-                <label class="uploadlabel" htmlFor="albumName">Album name</label>
-                <input class="uploadinput" placeholder="Enter album name" type="text" id="albumName"
+                <label className="uploadlabel" htmlFor="albumName">Album name</label>
+                <input className="uploadinput" placeholder="Enter album name" type="text" id="albumName"
                     onChange={event => {
                         const { value } = event.target;
                         setAlbumName(value);
                     }} />
-                <button class="uploadbutton" onClick={uploadHandler}>Upload</button>
+                <button className="uploadbutton" onClick={uploadHandler}>Upload</button>
             </div>
         </div>
     </div>

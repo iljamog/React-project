@@ -75,16 +75,16 @@ function Register() {
         }
     }
     return (
-        <div class="form-body">
-          <div class="mainregisterform">
-            <div class="registerform">
-              <label class="registerlabel">Register</label>
-              <input class="registerinput" placeholder="First name" onChange={handleFirstNameChange} required />
-              <input class="registerinput" placeholder="Last name" onChange={handleLastNameChange} required />
-              <input class="registerinput" placeholder="E-mail" onChange={handleEmailChange} name="email" type="email" required />
-              <input class="registerinput" placeholder="Password" onChange={handlePasswordChange} type="password" required />
-              <input class="registerinput" placeholder="Repeat password" onChange={handleRepeatPasswordChange} type="password" required />
-              <button class="registerbutton" type="primary" onClick={createUser}>Submit</button>
+        <div className="form-body">
+          <div className="mainregisterform">
+            <div className="registerform">
+              <label className="registerlabel">Register</label>
+              <input className="registerinput" placeholder="First name" onChange={handleFirstNameChange} required />
+              <input className="registerinput" placeholder="Last name" onChange={handleLastNameChange} required />
+              <input className="registerinput" placeholder="E-mail" onChange={handleEmailChange} name="email" type="email" required />
+              <input className="registerinput" placeholder="Password" onChange={handlePasswordChange} type="password" required />
+              <input className="registerinput" placeholder="Repeat password" onChange={handleRepeatPasswordChange} type="password" required />
+              <button className="registerbutton" type="primary" onClick={createUser}>Submit</button>
             </div>
           </div>
         </div>
