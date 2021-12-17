@@ -34,6 +34,8 @@
 	border-radius: 5px;
 }
 .mainform{
+	
+	margin-top: 50px;
 	width: 350px;
 	height: 450px;
 	overflow: hidden;
@@ -63,4 +65,9 @@
 
 .button:hover{
 	background: #855ad6;
+}
+
+.mainregisterform{
+	
+	margin-top: 50px;
 }
