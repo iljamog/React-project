@@ -1,46 +1,110 @@
-import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
-import 'antd/dist/antd.css';
-import './header.css';
-import {useEffect, useState} from "react";
 
+import { AppBar, Toolbar, makeStyles, Button } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
-function Header() {
+const useStyles = makeStyles(() => ({
+  header: {
+    backgroundColor: "#FFFFFF",
+  },
+  menuButton: {
+    fontFamily: 'forma-djr-text',
+    fontWeight: 700,
+    fontStyle: 'normal',
+    letterSpacing: '.15em',
+    lineHeight: '0em',
+  },
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-between",
+    color: "#000000"
+  }
+}));
 
-    const [header, setHeader] =useState();
-    const [user, setUser] = useState();
-    
-    function logout(){        
-        localStorage.clear();
-        setUser();
+const loggedInHeaders = [
+    {
+      label: "Home",
+      href: "/home",
+    },
+    {
+      label: "Image Upload",
+      href: "/upload",
+    },
+    {
+      label: "About",
+      href: "/about",
+    },
+    {
+      label: "Log out",
+      href: "/logout",
     }
+]
+const headersData = [
+    {
+      label: "Home",
+      href: "/home",
+    },
+    {
+      label: "Register",
+      href: "/register",
+    },
+    {
+      label: "Login",
+      href: "/login",
+    },
+  ];
+export default function Header() {
+  const { header, menuButton, toolbar } = useStyles();
+  const [user, setUser] = useState();
+  useEffect(() => {
+    setUser(localStorage.getItem("user"));
+  }, [user]);
 
-    useEffect(() => {
-        setUser(localStorage.getItem("user"));
-        if (user) {
-            setHeader(<>
-                <div className="logo"/>
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1"><Link to="home">Home</Link></Menu.Item>
-                    <Menu.Item key="4"><Link to="upload">Image upload</Link></Menu.Item>
-                    <Menu.Item key="5" onClick={logout} style={{ marginLeft: 'auto' }}><Link to="home">Logout</Link></Menu.Item>
-                    <Menu.Item key="6" ><Link to="about">About author</Link></Menu.Item>
-                </Menu>
-            </>)
-        }else {
-            setHeader(<>
-                <div className="logo"/>
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1"><Link to="home">Home</Link></Menu.Item>
-                    <Menu.Item key="2" style={{ marginLeft: 'auto' }}><Link to="register">Register</Link></Menu.Item>
-                    <Menu.Item key="3"style={{ marginLeft: '0%' }}><Link to="login">Login</Link></Menu.Item>
-                    <Menu.Item key="6" ><Link to="about">About author</Link></Menu.Item>
-                </Menu>
-            </>)
-        }
-      }, [user]);
+  const displayDesktop = () => {
+    return <Toolbar className={toolbar}>
+        <div className={menuButton}>{'Big Burps Pennywhistle'}</div>
+        <div>{getMenuButtons()}</div>
+        </Toolbar>;
+  };
+  const getMenuButtons = () => {
+      if(user){
+        return loggedInHeaders.map(({ label, href }) => {
+            return (
+              <Button
+                {...{
+                  key: label,
+                  color: "inherit",
+                  to: href,
+                  component: RouterLink,
+                  className: menuButton
+                }}
+              >
+                {label}
+              </Button>
+            );
+          });
+      }else{
+        return headersData.map(({ label, href }) => {
+            return (
+              <Button
+                {...{
+                  key: label,
+                  color: "inherit",
+                  to: href,
+                  component: RouterLink,
+                  className: menuButton
+                }}
+              >
+                {label}
+              </Button>
+            );
+          });
+      }
+  };
 
-    return <>{header}</>;
+  return (
+    <header>
+      <AppBar className={header}>{displayDesktop()}</AppBar>
+    </header>
+  );
 }
-
-export default Header
