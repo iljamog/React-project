@@ -1,5 +1,5 @@
 import './register.css';
-import {useState} from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
@@ -12,19 +12,19 @@ function Register() {
     const navigate = useNavigate()
 
 
-    function handleEmailChange(e){
+    function handleEmailChange(e) {
         setEmail(e.target.value);
     }
-    function handlePasswordChange(e){
+    function handlePasswordChange(e) {
         setPassword(e.target.value);
     }
-    function handleRepeatPasswordChange(e){
+    function handleRepeatPasswordChange(e) {
         setRepeatPassword(e.target.value);
     }
-    function handleFirstNameChange(e){
+    function handleFirstNameChange(e) {
         setFirstName(e.target.value);
     }
-    function handleLastNameChange(e){
+    function handleLastNameChange(e) {
         setLastName(e.target.value);
     }
 
@@ -70,24 +70,26 @@ function Register() {
                 setError(errors)
             }
         }
-        if(error){
+        if (error) {
             console.log(error);
         }
     }
     return (
-        <div className="form-body">
-          <div className="mainregisterform">
-            <div className="registerform">
-              <label className="registerlabel">Register</label>
-              <input className="registerinput" placeholder="First name" onChange={handleFirstNameChange} required />
-              <input className="registerinput" placeholder="Last name" onChange={handleLastNameChange} required />
-              <input className="registerinput" placeholder="E-mail" onChange={handleEmailChange} name="email" type="email" required />
-              <input className="registerinput" placeholder="Password" onChange={handlePasswordChange} type="password" required />
-              <input className="registerinput" placeholder="Repeat password" onChange={handleRepeatPasswordChange} type="password" required />
-              <button className="registerbutton" type="primary" onClick={createUser}>Submit</button>
+        <body>
+            <div className="register-form-body">
+                <div className="main-register-form">
+                    <div className="register-form">
+                        <label className="register-label">Register</label>
+                        <input className="register-input" placeholder="First name" onChange={handleFirstNameChange} required />
+                        <input className="register-input" placeholder="Last name" onChange={handleLastNameChange} required />
+                        <input className="register-input" placeholder="E-mail" onChange={handleEmailChange} name="email" type="email" required />
+                        <input className="register-input" placeholder="Password" onChange={handlePasswordChange} type="password" required />
+                        <input className="register-input" placeholder="Repeat password" onChange={handleRepeatPasswordChange} type="password" required />
+                        <button className="register-button" type="primary" onClick={createUser}>Submit</button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
+        </body>
     )
 }
 export default Register

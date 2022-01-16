@@ -8,12 +8,12 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const [error, setError] = useState('')
-  const navigate = useNavigate() 
+  const navigate = useNavigate()
 
-  function handleEmailChange(e){
+  function handleEmailChange(e) {
     setEmail(e.target.value);
   }
-  function handlePasswordChange(e){
+  function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
   const LogIn = async (e) => {
@@ -35,7 +35,7 @@ function Login() {
       console.log("Successfully logged in")
       localStorage.setItem('user', returnData)
       navigate('/home');
-      window.location.reload(); 
+      window.location.reload();
     } else {
       let errors = ''
       if (returnData.error) {
@@ -51,16 +51,18 @@ function Login() {
   }
 
   return (
-    <div className="form-body">
-      <div className="mainform">
-        <div className="loginform">
-          <label className="loginlabel">Login</label>
-          <input className="input" label="E-mail" placeholder="E-mail" onChange={handleEmailChange} type="email" required />
-          <input className="input" label="Password" placeholder="Password" onChange={handlePasswordChange} type="password" required />
-          <button className="button" type="primary" onClick={LogIn}>Submit</button>
+    <body>
+      <div className="login-form-body">
+        <div className="main-form">
+          <div className="login-form">
+            <label className="login-label">Login</label>
+            <input className="login-input" label="E-mail" placeholder="E-mail" onChange={handleEmailChange} type="email" required />
+            <input className="login-input" label="Password" placeholder="Password" onChange={handlePasswordChange} type="password" required />
+            <button className="login-button" type="primary" onClick={LogIn}>Submit</button>
+          </div>
         </div>
       </div>
-    </div>
+    </body>
   )
 }
 
