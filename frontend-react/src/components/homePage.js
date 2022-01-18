@@ -2,11 +2,11 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import './homePage.css';
 import CloseIcon from '@material-ui/icons/Close';
+import ModalImage from "react-modal-image";
+
 
 
 function HomePage() {
-
-
     const [picsFromServer, setpicsFromServer] = useState([]);
 
     useEffect(() => {
@@ -28,13 +28,8 @@ function HomePage() {
         return prev;
     }, {});
 
-    const [model, setModel] =useState(false)
-    const [tempImageSource, setTempImageSource] = useState('')
+    const [model, setModel] = useState(false)
 
-    const selectImage = (pathString) => {
-        setTempImageSource(pathString)
-        setModel(true)
-    }
 
     const picsToUpload = Object.entries(picsByAlbum).map(([key, value]) => {
         //KEY IS ALBUMNAME, VALUE IS AN OBJECT CONTAINING EVERY PIC DATA
@@ -44,21 +39,32 @@ function HomePage() {
         Array.from(value).forEach(element => {
             let pathString = "http://localhost:3001/uploads/" + element.fileName;
             let imageID = element._id;
-            return (arrayOfHtmlElements.push(<div className='imageDiv' onClick={() => selectImage(pathString)}> <img alt="failed to load" src={pathString} key={imageID} style={{width: '100%'}}/> </div>))
+            return (arrayOfHtmlElements.push(
+                <div className='imageDiv'>
+                    <ModalImage
+                        small={pathString}
+                        key={imageID}
+                        medium={pathString}
+                        className="open-image-modal"
+                        hideDownlaod={true}
+                    />
+                </div>
+                )
+            )
         });
 
         if (value.length === 1) {
             cssClassNameForImageContainer = 'imageContainerFor1image';
         } else if (value.length === 2) {
             cssClassNameForImageContainer = 'imageContainerFor2image';
-         }else {
+        } else {
             cssClassNameForImageContainer = 'imageContainer';
-         }
+        }
 
         return (
             <div className='albumContainer'>
                 <div>
-                    <p className='albumName'>-  {key}</p>
+                    <p className='albumName'>{key}</p>
                 </div>
                 <div className={cssClassNameForImageContainer}>
                     {arrayOfHtmlElements}
@@ -68,11 +74,11 @@ function HomePage() {
     })
 
     return (
-        
+
         <div className="gallery">
-            <div className={model? 'model open':'model'}>
-                <img alt="failed to load" src={tempImageSource}/>
-                <CloseIcon onClick={() => setModel(false)}/>
+            <div className={model ? 'model open' : 'model'}>
+                <img alt="failed to load" src={''} />
+                <CloseIcon onClick={() => setModel(false)} />
             </div>
             {picsToUpload}
         </div>
