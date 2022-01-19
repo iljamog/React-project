@@ -4,6 +4,6 @@ const uploadController = require('../controllers/upload'); // STORING IN MONGO
 const uploadMiddleware = require('../middleware/upload'); // STORING LOCALLY
 
 
-router.post("/upload", uploadMiddleware.send ,uploadController.uploadFiles ); // ADDING SOON
+router.post("/upload", uploadMiddleware.send ,uploadController.uploadFiles ); 
 
 module.exports = router;

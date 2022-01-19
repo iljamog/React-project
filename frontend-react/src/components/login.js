@@ -33,7 +33,7 @@ function Login() {
 
     if (returnData.token) {
       console.log("Successfully logged in")
-      localStorage.setItem('user', returnData)
+      localStorage.setItem('user', JSON.stringify(returnData))
       navigate('/home');
       window.location.reload();
     } else {

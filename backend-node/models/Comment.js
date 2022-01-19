@@ -1,12 +1,13 @@
 const { Schema, model } = require('mongoose')
 
 const commentSchema = new Schema({
-    user: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     comment: { type: String, required: true },
     fileName: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
 });
 
-const Image = model("Image", imageSchema)
+const Comment = model("Comment", commentSchema)
 
-module.exports = Image
+module.exports = Comment
