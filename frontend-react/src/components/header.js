@@ -61,7 +61,7 @@ export default function Header() {
   }, [user]);
 
   const displayDesktop = () => {
-    return <Toolbar className={toolbar}>
+    return <Toolbar className={toolbar} >
         <div className={menuButton}>{'Big Burps Pennywhistle'}</div>
         <div>{getMenuButtons()}</div>
         </Toolbar>;
@@ -104,7 +104,7 @@ export default function Header() {
 
   return (
     <header>
-      <AppBar className={header}>{displayDesktop()}</AppBar>
+      <AppBar className={header} >{displayDesktop()}</AppBar>
     </header>
   );
 }

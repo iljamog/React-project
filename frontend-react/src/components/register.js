@@ -37,12 +37,12 @@ function Register() {
         }
 
         if (!firstname || !lastname) {
-            setError('Please enter your email');
+            setError('Please enter your name');
         } else if (!email) {
             setError('Please enter your email');
         } else if (!password) {
             setError('Please enter your password');
-        } else if (!password !== repeatPassword) {
+        } else if (password !== repeatPassword) {
             setError('The passwords dont match, please try again');
         } else {
             const response = await fetch('http://localhost:3000/api/auth/signup', {
@@ -57,7 +57,7 @@ function Register() {
             if (response.ok) {
                 setError('')
                 console.log("Success! User registered!")
-                navigate('/home');
+                navigate('/login');
             } else {
                 let errors = ''
                 if (returnData.error) {
