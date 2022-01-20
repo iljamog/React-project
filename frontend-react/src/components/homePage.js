@@ -70,9 +70,16 @@ function HomePage() {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('')
     const user = localStorage.getItem('user')
-    const userData = JSON.parse(user)
-    const firstName = userData.firstName
-    const lastName = userData.lastName
+    let firstName;
+    let lastName;
+    let userData;
+
+    if(user){
+        userData = JSON.parse(user)
+        firstName = userData.firstName
+        lastName = userData.lastName
+    }
+    
 
     async function addComment(){
         if(comment.length>0){
@@ -130,23 +137,40 @@ function HomePage() {
             return(commentArray)
 
         }else{
-            return(<p>Sry no comments</p>)
+            return(<p style={{
+                fontSize: "1rem",
+                fontWeight: 1.5,
+                lineHeight: 1.5,
+                color: "#292b2c",
+                padding: "0 2em"
+                }} >
+                  No comments yet.
+                </p>)
         }
         
         
     }
 
     let clearInput = () => { 
-        document.getElementsByClassName("comment-input")[0].value='';
+        let input = document.getElementsByClassName("comment-input");
+        if(input.length>0){
+            input[0].value='';
+        }
       }
 
     const commentsSectionContent = () => {
         if(user){
             return(
-                <div>
-                    {createCommentHtmlElements()}
-                    <input className='comment-input' placeholder='Add comment' onChange={(e) => setComment(e.target.value)} type='text' required />
-                    <button className='comment-button' type='primary' onClick={() =>{ addComment(); clearInput() }} >Submit</button>
+                <div className='wrapper'>
+
+                    <div className='inputDiv'>
+                        <textarea className='comment-input' placeholder='Add comment' onChange={(e) => setComment(e.target.value)} required />
+                        <button className='comment-button' type='primary' onClick={() =>{ addComment(); clearInput() }} >Submit</button>
+                    </div>
+                    <div className='commentsWrapper'>
+                        {createCommentHtmlElements()}
+                    </div>
+                    
                 </div>
             )
         }else{

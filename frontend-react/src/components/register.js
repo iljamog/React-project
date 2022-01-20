@@ -71,7 +71,7 @@ function Register() {
             }
         }
         if (error) {
-            console.log(error);
+            alert(error);
         }
     }
     return (

@@ -56,13 +56,47 @@ const headersData = [
 export default function Header() {
   const { header, menuButton, toolbar } = useStyles();
   const [user, setUser] = useState();
+    
+
+    
+
   useEffect(() => {
+    let email;
+    let userData;
     setUser(localStorage.getItem("user"));
+    if(user){
+      userData = JSON.parse(user)
+      email = userData.email
+    }
+    let elements = document.getElementsByTagName('a');
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      if(element.href === 'http://localhost:3000/logout'){
+        element.addEventListener('click', (e) => {logOut(e)});
+      }
+      if(element.href === 'http://localhost:3000/upload'){
+        if (email === 'admin@admin.ee') {
+          console.log('Welcome Admin')
+        }else{
+          element.remove();
+        }
+          
+        
+      }
+      
+    }
+    
   }, [user]);
 
+  function logOut(e) {
+    e.preventDefault();
+    localStorage.clear()
+    setUser()
+ }
+  
   const displayDesktop = () => {
-    return <Toolbar className={toolbar} >
-        <div className={menuButton}>{'Big Burps Pennywhistle'}</div>
+    return <Toolbar id='headerButtons' className={toolbar} >
+        <div id='logo' className={menuButton} style={{alignItems: "center !important"}}>{'Big Burps Pennywhistle'}</div>
         <div>{getMenuButtons()}</div>
         </Toolbar>;
   };
