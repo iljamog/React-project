@@ -56,9 +56,6 @@ const headersData = [
 export default function Header() {
   const { header, menuButton, toolbar } = useStyles();
   const [user, setUser] = useState();
-    
-
-    
 
   useEffect(() => {
     let email;
@@ -72,7 +69,7 @@ export default function Header() {
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i];
       if(element.href === 'http://localhost:3000/logout'){
-        element.addEventListener('click', (e) => {logOut(e)});
+        element.addEventListener('click', (e) => {logOut(e);});
       }
       if(element.href === 'http://localhost:3000/upload'){
         if (email === 'admin@admin.ee') {
@@ -80,18 +77,15 @@ export default function Header() {
         }else{
           element.remove();
         }
-          
-        
       }
-      
     }
-    
   }, [user]);
 
   function logOut(e) {
     e.preventDefault();
-    localStorage.clear()
     setUser()
+    localStorage.clear()
+    window.location.reload(true);
  }
   
   const displayDesktop = () => {

@@ -31,7 +31,9 @@
     grid-gap: 15px;
 	padding-left: 0;
 }
-
+.imageDiv{
+	padding-bottom: 20px;
+}
 .imageDiv img{
 	height: 40vh;
 	width: 20vw;
@@ -42,6 +44,40 @@
 }
 .imageDiv img:hover{
 	filter:opacity(0.8);
+}
+
+.deleteIconWrapper{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid black;
+	cursor: pointer;
+}
+.deleteIconWrapper:hover{
+	-webkit-animation-name: animation;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;    
+    -webkit-animation-play-state: running;
+    
+    animation-name: animation;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;    
+    animation-play-state: running;
+    background-color: white;
+}
+
+@-webkit-keyframes animation {
+    0%     {background-color:white;}
+    50.0%  {background-color: red;}
+    100.0%  {background-color:white;}
+}
+
+@keyframes animation {
+    0%     {background-color:white;}
+    50.0%  {background-color: red;}
+    100.0%  {background-color:white;}
 }
 .model{
 	width: 100%;
@@ -83,7 +119,6 @@
 	width: 2rem;
 	height: 2rem;
 	padding: 5px;
-	background-color: rgba(0, 0, 0, 0.05);
 	color: white;
 	cursor: pointer;
 }
@@ -163,13 +198,27 @@
 .singleComment{
 	
 	height: auto;
+	position: relative;
 	min-height: 4rem;
 	background-color: #ffff;
 }
 
-.singleComment> h5{display: block;
+div.singleComment:before {
+	content: "";
+	position: absolute;
+	left: 13%;
+	bottom: 0;
+	height: 15px;
+	width: 70%;
+	border-bottom: 1px solid #000;
+  }
+
+.singleComment> h5{
+	font-style: normal;
+	display: block;
+	font-family: forma-djr-text;
 	padding: 0.5em;
-    font-size: 0.83em;
+    font-size: 1em;
     margin-block-start: 0em;
     margin-block-end: 0em;
     margin-inline-start: 0px;
@@ -184,7 +233,9 @@
     margin-block-end: 0em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-	padding: 1em;
+	padding: 0.3em;
+	padding-bottom: 1em !important;
+	padding-left: 1em !important;
 }
 
 .inputDiv{
@@ -192,14 +243,29 @@
 }
 
 .inputDiv> textarea,button {
-	flex: 1 1 calc(33% - 1rem);
-	
+	flex: 1 1 calc(33% - 1rem);	
     display: inline-block;
     padding: 10px 15px;
     font-size: 1rem;
     border-radius: 0;
     -webkit-appearance: none;
-  }
+}
+
+textarea {
+    font-family: somefont;
+}
+::-webkit-input-placeholder {
+    font-family: somefont;
+}
+:-moz-placeholder {
+    font-family: somefont;
+}
+::-moz-placeholder {
+    font-family: somefont;
+}
+:-ms-input-placeholder {
+    font-family: somefont;
+}
 
 .wrapper{
 	height: 100%;
@@ -224,18 +290,32 @@
   */
 
 .comment-button{
-	height: auto;
-	border: none;
-	color: #FFFFFF;
-	background-color: black;
-	opacity: 0.6;
+	width: 42%;
+    justify-content: center;
+    display: block;
+    background: black;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    font-family: forma-djr-text;
+    font-weight: 700;
+    line-height: 0em;
+    height: 7vh;
+	margin: 0.2em;
 }
 
 .comment-input{
+	margin-left: 2px;
+	margin-top: 4px;
 	resize: none;
 	border: none;
 	border-bottom: 1px solid #ccc!important;
-	min-width: 180px;
+	max-height: 4vh;
+	min-width: 100px;
 	height: 5vh;
 }
 

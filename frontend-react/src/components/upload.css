@@ -5,33 +5,40 @@
 	font-family: 'Jost', sans-serif;
 }
 .uploadlabel{
+	font-family: forma-djr-text !important;
+	color: black !important;
 	color: #fff;
 	font-size:calc(12px + 3vw);
 	justify-content: center;
 	display: flex;
 	font-weight: bold;
-	color: #573b8a;
 	transform: scale(.6);
 }
 .upperuploadlabel{
-	width: 60%;
-	height: 12%;
-	margin: 20px auto;	
+	width: 55%;
+	height: 10%;
 	justify-content: center;
-	align-items: center; 
+	align-items: center;
 	display: flex;
-	background: #573b8a;
-	font-size: 1em;
-	font-weight: bold;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+	margin: 20px auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: black;
+    font-size: 1.4em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     color: white;
+	padding: 10px;
+    font-family: forma-djr-text;
+    font-weight: 700;
+    line-height: 0em;
+    height: 5vh;
 }
 .uploadinput{
 	width: 55%;
 	height: 10%;
-    display: flex;
 	justify-content: center;
 	align-items: center;
 	display: flex;
@@ -54,18 +61,25 @@
 }
 .uploadbutton{
 	width: 60%;
-	height: 12%;
-	margin: 20px auto;
+	height: 10%;
 	justify-content: center;
-	display: block;
-	background: #573b8a;
-	font-size: 1em;
-	font-weight: bold;
-	margin-top: 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+	align-items: center;
+	display: flex;
+	margin: 20px auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: black;
+    font-size: 1.4em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     color: white;
+	padding: 10px;
+    font-family: forma-djr-text;
+    font-weight: 700;
+    line-height: 0em;
+    height: 7.2vh;
 }
 .uploadbutton:hover{
 	background: #855ad6;

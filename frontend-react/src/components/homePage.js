@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import './homePage.css';
 import CloseIcon from '@material-ui/icons/Close';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 
 function HomePage() {
@@ -9,7 +10,19 @@ function HomePage() {
     const [picsFromServer, setpicsFromServer] = useState([]);
     const [model, setModel] = useState(false)
     const [tempImageSource, setTempImageSource] = useState('')
-    
+
+    const user = localStorage.getItem('user')
+    let firstName;
+    let lastName;
+    let email;
+    let userData;
+
+    if(user){
+        userData = JSON.parse(user)
+        firstName = userData.firstName
+        lastName = userData.lastName
+        email = userData.email;
+    }
 
     useEffect(() => {
         axios.get("http://localhost:3000/home/")
@@ -17,7 +30,6 @@ function HomePage() {
                 for (let i = 0; i < res.data.length; i++) {
                     setpicsFromServer(res.data)
                 }
-                
             })
             .catch(err => console.log(err));
     }, []);
@@ -30,7 +42,6 @@ function HomePage() {
         prev[key].push(pic);
         return prev;
     }, {});
-
     const selectImage = (pathString) => {
         setTempImageSource(pathString)
         setModel(true)
@@ -40,21 +51,33 @@ function HomePage() {
         //KEY IS ALBUMNAME, VALUE IS AN OBJECT CONTAINING EVERY PIC DATA
         let arrayOfHtmlElements = [];
         let cssClassNameForImageContainer;
-
         Array.from(value).forEach(element => {
             let pathString = "http://localhost:3001/uploads/" + element.fileName;
             let imageID = element._id;
-            return (arrayOfHtmlElements.push(<div className='imageDiv' onClick={() => {selectImage(pathString);getCommentsFromServer(pathString)}}> <img alt="failed to load" src={pathString} key={imageID} style={{width: '100%'}}/> </div>))
+            if(email === 'admin@admin.ee'){
+                return (arrayOfHtmlElements.push(
+                <div className='imageDiv' onClick={() => {selectImage(pathString);getCommentsFromServer(pathString)}}>
+                    <img alt="failed to load" src={pathString} key={imageID} style={{width: '100%'}}/>
+                    <div className='deleteIconWrapper' onClick={() => {deleteImage(element.fileName);setModel(false)}} >
+                        <DeleteForeverIcon />
+                    </div>
+                    
+                </div>))
+            }else{
+                return (arrayOfHtmlElements.push(
+                    <div className='imageDiv' onClick={() => {selectImage(pathString);getCommentsFromServer(pathString)}}>
+                        <img alt="failed to load" src={pathString} key={imageID} style={{width: '100%'}}/>
+                    </div>))
+            }
+            
         });
-
         if (value.length === 1) {
             cssClassNameForImageContainer = 'imageContainerFor1image';
-        } else if (value.length === 2) {
+        }else if (value.length === 2) {
             cssClassNameForImageContainer = 'imageContainerFor2image';
-         }else {
+        }else {
             cssClassNameForImageContainer = 'imageContainer';
-         }
-
+        }
         return (
             <div className='albumContainer'>
                 <div>
@@ -69,17 +92,21 @@ function HomePage() {
 
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('')
-    const user = localStorage.getItem('user')
-    let firstName;
-    let lastName;
-    let userData;
-
-    if(user){
-        userData = JSON.parse(user)
-        firstName = userData.firstName
-        lastName = userData.lastName
-    }
     
+
+    async function deleteImage (fileName){
+        axios.delete(`http://localhost:3000/home/delete/${fileName}`).then(()=> {
+            console.log('success')
+        }).catch(err => console.log(err));
+        axios.get("http://localhost:3000/home/")
+            .then(res => {
+                for (let i = 0; i < res.data.length; i++) {
+                    setpicsFromServer(res.data)
+                }
+            })
+            .catch(err => console.log(err));
+        
+    }
 
     async function addComment(){
         if(comment.length>0){
@@ -89,7 +116,6 @@ function HomePage() {
             comment: comment,
             fileName: tempImageSource
             }
-
             const res = await fetch('http://localhost:3000/api/comments/add', {
             method: 'POST',
             headers: {
@@ -100,7 +126,6 @@ function HomePage() {
             setComment('')
             getCommentsFromServer(tempImageSource)
             createCommentHtmlElements()
-
             const returnData = await res.json()
             let errors = ''
             if (returnData.error) {
@@ -120,22 +145,19 @@ function HomePage() {
             .catch(err => console.log(err));
     }
 
-
     function createCommentHtmlElements(){
         if(comments.length>0){
             let commentArray = []
-            
             for (let index = 0; index < comments.length; index++) {
                 const element = comments[index];
                 commentArray.push(
                     <div className='singleComment'> 
-                        <h5>From: {element.firstName} {element.lastName}</h5>
+                        <h5>{element.firstName} {element.lastName} says:</h5>
                         <p> {element.comment} </p>
                     </div> 
                 )
             }
             return(commentArray)
-
         }else{
             return(<p style={{
                 fontSize: "1rem",
@@ -147,8 +169,6 @@ function HomePage() {
                   No comments yet.
                 </p>)
         }
-        
-        
     }
 
     let clearInput = () => { 
@@ -162,7 +182,6 @@ function HomePage() {
         if(user){
             return(
                 <div className='wrapper'>
-
                     <div className='inputDiv'>
                         <textarea className='comment-input' placeholder='Add comment' onChange={(e) => setComment(e.target.value)} required />
                         <button className='comment-button' type='primary' onClick={() =>{ addComment(); clearInput() }} >Submit</button>
@@ -170,7 +189,6 @@ function HomePage() {
                     <div className='commentsWrapper'>
                         {createCommentHtmlElements()}
                     </div>
-                    
                 </div>
             )
         }else{
@@ -183,9 +201,7 @@ function HomePage() {
     }
 
     return (
-        
         <div className="gallery">
-            
             <div className={model? 'model open':'model'}>
                 <div className='modelContainer'>
                     <img alt="failed to load" src={tempImageSource}/>
@@ -195,7 +211,6 @@ function HomePage() {
                     </div>
                 </div>
             </div>
-
             {picsToDisplay}
         </div>
     )

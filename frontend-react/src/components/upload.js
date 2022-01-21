@@ -13,9 +13,14 @@ function UploadFile() {
         for (let i = 0; i < files.length; i++) {
             uploadData.append("file", files[i]);
         }
-        axios.post("http://localhost:3000/api/upload/upload", uploadData)
+        if(files.length>0 && albumName !== null ){
+            axios.post("http://localhost:3000/api/upload/upload", uploadData)
             .then(window.location.reload())
             .catch(err => console.log(err));
+        } else {
+            alert('Something missing! Try again, please.')
+        }
+        
     }
 
     return (

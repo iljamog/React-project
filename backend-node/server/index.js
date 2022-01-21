@@ -24,9 +24,7 @@ app.listen(PORT, () => {
 });
 
 app.base = "/home"
-
 app.use(express.json());
-
 app.use('/api/auth', authRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/home', imagesRoutes);
