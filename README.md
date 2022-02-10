@@ -16,12 +16,10 @@ Vahva portfoolio leht tublile fotograafile.
 Funktsionaalsuse alla arvestatud ka huvitavaid Front End'i lahendusi.
 
 * Kasutajana:
-    * Piltide vaatamine, kommenteerimine, laikimine
-    * Kontakteerumine ?
+    * Piltide vaatamine, kommenteerimine
 
 * Adminina:
-    * Piltide lisamine / kustutamine ( Main page editimine ?)
-    * Kommentaaridele vastamine
+    * Piltide lisamine / kustutamine 
     
 
 
