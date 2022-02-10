@@ -6,9 +6,10 @@ Vahva portfoolio leht tublile fotograafile.
 * Kert Liinat
 * Ilja Mogilnõi
 
-## Wireframe
+## Kuvatõmmised
 
-* Soon ...
+![main page gif](screencap/maingif.gif)
+![mobile comment section gif](screencap/mobilecomment.gif)
 
 ## Funktsionaalsus
 
